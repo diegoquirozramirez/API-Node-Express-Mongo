@@ -10,9 +10,9 @@ resources:
 
 variables:
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: 'd3a12149-b659-4492-8f5a-39085873bc72'
-  imageRepository: 'appv1api'
-  containerRegistry: 'appv1.azurecr.io'
+  dockerRegistryServiceConnection: '459ff96b-fee4-4be7-b5c4-efc67a8214b6'
+  imageRepository: 'apirestpichincha'
+  containerRegistry: 'apirestpichincha.azurecr.io'
   dockerfilePath: '**/Dockerfile'
   tag: '$(Build.BuildId)'
 
@@ -37,3 +37,18 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
+    #- task: Docker@2
+    #  inputs:
+    #    containerRegistry: 'dockerRegistryServiceConnection'
+    #    command: 'login'
+
+    - task: AzureRmWebAppDeployment@4
+      inputs:
+        ConnectionType: 'AzureRM'
+        azureSubscription: 'Azure subscription 1 (459ff96b-fee4-4be7-b5c4-efc67a8214b6)'
+        appType: 'webAppLinux'
+        WebAppName: 'apirestservices'
+        packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+        RuntimeStack: 'NODE|12-lts'
+        ScriptType: 'Inline Script'
+        InlineScript: 'docker login'
