@@ -9,7 +9,7 @@ const port = process.env.PORT || 3000;
 app.use(cors())
 app.use(bodyParser.json())
 app.get('/', (req, res) => {
-    res.send("Hola Mundo")
+    res.send("Hola Mundo for everyone")
 })
 app.use('/post', routePost)
 
