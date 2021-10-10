@@ -20,14 +20,20 @@ steps:
     npm run build --if-present
   displayName: 'npm install and build'
 
-- task: AzureRmWebAppDeployment@4
+- task: CmdLine@2
+  displayName: 'Node version'
   inputs:
-    ConnectionType: 'AzureRM'
-    azureSubscription: 'Azure subscription 1 (459ff96b-fee4-4be7-b5c4-efc67a8214b6)'
-    appType: 'webAppLinux'
-    WebAppName: 'apirestservices'
-    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
-    RuntimeStack: 'NODE|12-lts'
-- script: |
-    npm --version
-  displayName: "NPM Version -- Diego"
+    script: 'node --version'
+
+- task: CmdLine@2
+  displayName: 'Docker PS'
+  inputs:
+    script: 'docker ps'
+#- task: AzureRmWebAppDeployment@4
+#  inputs:
+#    ConnectionType: 'AzureRM'
+#    azureSubscription: 'Azure subscription 1 (459ff96b-fee4-4be7-b5c4-efc67a8214b6)'
+#    appType: 'webAppLinux'
+#    WebAppName: 'apirestservices'
+#    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+#    RuntimeStack: 'NODE|12-lts'
