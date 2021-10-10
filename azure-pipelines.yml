@@ -28,7 +28,7 @@ steps:
 - task: CmdLine@2
   displayName: 'Docker PS'
   inputs:
-    script: 'docker ps'
+    script: 'docker login apirestpichincha.azurecr.io -u $(USER_ACR) -p $(PASS_ACR)'
 #- task: AzureRmWebAppDeployment@4
 #  inputs:
 #    ConnectionType: 'AzureRM'
