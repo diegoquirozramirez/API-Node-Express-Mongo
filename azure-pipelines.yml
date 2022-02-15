@@ -19,6 +19,14 @@ steps:
       Write-Host "Hello World"
       
       pwd
+- task: CmdLine@2
+  inputs:
+    script: |
+      echo Write your commands here
+      
+      echo Hello world
+
+      pwd
 #- task: NodeTool@0
 #  inputs:
 #    versionSpec: '10.x'
