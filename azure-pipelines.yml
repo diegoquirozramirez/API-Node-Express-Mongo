@@ -10,25 +10,35 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- task: NodeTool@0
+- task: PowerShell@2
   inputs:
-    versionSpec: '10.x'
-  displayName: 'Install Node.js'
+    targetType: 'inline'
+    script: |
+      # Write your PowerShell commands here.
+      
+      Write-Host "Hello World"
+      
+      pwd
+#- task: NodeTool@0
+#  inputs:
+#    versionSpec: '10.x'
+#  displayName: 'Install Node.js'
 
-- script: |
-    npm install
-    npm run build --if-present
-  displayName: 'npm install and build'
+#- script: |
+#    npm install
+#    npm run build --if-present
+#  displayName: 'npm install and build'
 
-- task: CmdLine@2
-  displayName: 'Node version'
-  inputs:
-    script: 'node --version'
+#- task: CmdLine@2
+#  displayName: 'Node version'
+#  inputs:
+#    script: 'node --version'
 
-- task: CmdLine@2
-  displayName: 'Docker PS'
-  inputs:
-    script: 'docker login apirestpichincha.azurecr.io -u $(USER_ACR) -p $(PASS_ACR)'
+#- task: CmdLine@2
+#  displayName: 'Docker PS'
+#  inputs:
+#    script: 'docker login apirestpichincha.azurecr.io -u $(USER_ACR) -p $(PASS_ACR)'
+
 #- task: AzureRmWebAppDeployment@4
 #  inputs:
 #    ConnectionType: 'AzureRM'
