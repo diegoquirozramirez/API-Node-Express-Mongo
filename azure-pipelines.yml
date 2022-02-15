@@ -25,7 +25,7 @@ steps:
       pwd
       cd ..
       pwd
-      
+      ls
 - task: CmdLine@2
   inputs:
     script: |
